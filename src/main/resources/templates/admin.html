@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>ADMIN all users</title>
+</head>
+<body class="bg-light" style="height: 100vh;">
+<header>
+    <div class="container-fluid bg-dark">
+        <div class="row d-flex align-items-center">
+            <div class="col-8  ">
+                <h3 class="text-white title-user"></h3></div>
+            <div class="col-4 d-flex justify-content-end ">
+                <a class="navbar-brand text-white-50 content-button " href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="container-fluid h-100 ">
+    <div class="row h-100 d-flex align-items-start">
+        <div class="col-2 d-flex flex-column p-0 h-100 bg-white ">
+            <button type="button" class="btn btn-link active bg-primary mt-3 text-white aria-selected=true button-admin"
+                    style="text-align: start;display: none">
+                <a class="navbar-brand text-white" href="/admin/" style="text-align: start;" >Admin</a>
+            </button>
+            <button type="button" class="btn btn-link bg-white text-primary aria-selected=false button-user"
+                    style="text-align: start; display: none">
+                <a class="navbar-brand text-primary" href="/user" style="text-align: start;" >User</a>
+            </button>
+        </div>
+        <div class="col-10 bg-light d-flex flex-column ">
+            <div style="width: 90%; margin: auto;">
+                <h1>Admin panel</h1>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li>
+                        <input type="button" value="Users Table" class="nav-link active bg-white text-primary button-all"/>
+                    </li>
+                    <li>
+                        <input type="button" value="New User" class="nav-link button-add"/>
+                    </li>
+                </ul>
+
+                <!--ПАНЕЛЬ ОТОБРАЖЕНИЯ ВСЕХ ЮЗЕРОВ-->
+                <div class="border border-end bg-white panel-all">
+                    <h2 class="border p-3 m-0 bg-light">All users</h2>
+                    <div style="width: 95%;">
+                        <table class="table table-borderless table-striped mt-3 mb-5">
+                            <thead class="border border-left-0 border-right-0" >
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody class = "users__container">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--ПАНЕЛЬ ДОБАВЛЕНИЯ ЮЗЕРОВ-->
+                <div class="border border-end bg-white panel-add" style="display: none">
+                    <h2 class="border p-3 m-0 bg-light">Add new user</h2>
+                    <form class="w-25 m-auto p-0 form-add" >
+                        <label for="firstName" class="form-label text-center w-100 mb-0 mt-2" style="font-weight: 700;font-size: 16px;">First Name</label>
+                        <input type="text" class="form-control p-0 user__firstname" id="firstName">
+                        <div class="position-absolute error-firstname" style="color:red; font-size: 12px; display: none" >firstName Error</div>
+                        <label for="lastName" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Last Name</label>
+                        <input type="text" class="form-control p-0 user__lastname" id="lastName">
+                        <div class="position-absolute error-lastname" style="color:red; font-size: 12px; display: none" >lastName Error</div>
+                        <label for="age" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Age</label>
+                        <input type="number" class="form-control p-0 user__age" id="age">
+                        <div class="position-absolute error-age" style="color:red; font-size: 12px; display: none" >Age Error</div>
+                        <label for="username" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Email</label>
+                        <input type="email" class="form-control p-0 user__username" id="username">
+                        <div class="position-absolute error-username" style="color:red; font-size: 12px; display: none" >Username Error</div>
+                        <label for="password2" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Password</label>
+                        <input type="password" class="form-control p-0 user__password" id="password">
+                        <div class="position-absolute error-password" style="color:red; font-size: 12px;display: none" >Username Error</div>
+                        <label for="roles" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Role</label>
+                        <select class="form-control text-center user__roles" id="roles" name="roles" multiple="multiple" value>
+                            <option class="user__roles-admin" value="1">Admin</option>
+                            <option class="user__roles-user" value="2">User</option>
+                        </select>
+                        <div class="position-absolute error-roles" style="color:red; font-size: 12px; display: none" >Roles Error</div>
+                        <button type="submit" class="btn btn-success m-auto d-block">Add new user</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--МОДАЛЬНОЕ ОКНО ПРАВКА ЮЗЕРОВ-->
+<div aria-hidden="true" aria-labelledby="editModalLabel" id="editModal"
+     tabindex="-1" class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-edit">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit
+                        user</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="form-group required">
+                        <div class="controls">
+                            <label class="form-label text-center mb-0 mt-2 w-100 " style="font-weight: 700;font-size: 16px;" for="id">ID</label>
+                            <input type="number" class="form-control text-center user__id" id="id" value disabled>
+                            <label class="form-label text-center mb-0 mt-2 w-100 " style="font-weight: 700;font-size: 16px;" for="firstname1">First name</label>
+                            <input type="text" class="form-control text-center user__firstname" id="firstname1" value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="lastname1">Last name</label>
+                            <input type="text" class="form-control text-center user__lastname" id="lastname1" value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="age1">Age</label>
+                            <input type="number" class="form-control text-center user__age" id="age1" value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="email1">Email</label>
+                            <input type="email" class="form-control text-center user__username" id="email1" value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="password1">Password</label>
+                            <input type="password" class="form-control text-center user__password" id="password1" value/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="roles1">Role</label>
+                            <select class="form-control text-center user__roles" id="roles1" name="roles" multiple="multiple" value>
+                                <option class="user__roles-admin" value="1">Admin</option>
+                                <option class="user__roles-user" value="2">User</option>
+                            </select>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--МОДАЛЬНОЕ ОКНО УДАЛЕНИЯ ЮЗЕРОВ-->
+<div aria-hidden="true" aria-labelledby="editModalLabel" id="deleteModal"
+     tabindex="-1" class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="form-group required">
+                        <div class="controls">
+                            <label class="form-label text-center mb-0 mt-2 w-100 " style="font-weight: 700;font-size: 16px;" for="id2">ID</label>
+                            <input type="number" class="form-control text-center user__id" id="id2" value disabled>
+                            <label class="form-label text-center mb-0 mt-2 w-100 " style="font-weight: 700;font-size: 16px;" for="firstname2">First name</label>
+                            <input type="text" class="form-control text-center user__firstname" id="firstname2" disabled value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="lastname2">Last name</label>
+                            <input type="text" class="form-control text-center user__lastname" id="lastname2" disabled value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="age2">Age</label>
+                            <input type="number" class="form-control text-center user__age" id="age2" disabled value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="email2">Email</label>
+                            <input type="email" class="form-control text-center user__username" disabled id="email2" value required/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="password2">Password</label>
+                            <input type="password" class="form-control text-center user__password" disabled id="password2" value/>
+                            <label class="form-label text-center mb-0 mt-2 w-100" style="font-weight: 700;font-size: 16px;" for="roles2">Role</label>
+                            <select class="form-control text-center user__roles" id="roles2" name="roles" disabled multiple="multiple" value>
+                                <option class="user__roles-admin" value="1">Admin</option>
+                                <option class="user__roles-user" value="2">User</option>
+                            </select>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<template id="users-template">
+    <tr class = "user__item">
+        <td class = "user__id"></td>
+        <td class = "user__firstName"></td>
+        <td class = "user__lastName"></td>
+        <td class = "user__age"></td>
+        <td class = "user__userName"></td>
+        <td class = "user__role"></td>
+        <td>
+            <button type="button" class="btn btn-info button-edit" data-toggle="modal" data-target="#editModal">Edit</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger button-delete" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </td>
+    </tr>
+</template>
+
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="/index.js"></script>
+
+</body>
+</html>

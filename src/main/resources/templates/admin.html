@@ -79,25 +79,25 @@
                     <form class="w-25 m-auto p-0 form-add" >
                         <label for="firstName" class="form-label text-center w-100 mb-0 mt-2" style="font-weight: 700;font-size: 16px;">First Name</label>
                         <input type="text" class="form-control p-0 user__firstname" id="firstName">
-                        <div class="position-absolute error-firstname" style="color:red; font-size: 12px; display: none" >firstName Error</div>
+                        <div class="position-absolute errors error-firstname" style="color:red; font-size: 12px; display: none" >firstName Error</div>
                         <label for="lastName" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Last Name</label>
                         <input type="text" class="form-control p-0 user__lastname" id="lastName">
-                        <div class="position-absolute error-lastname" style="color:red; font-size: 12px; display: none" >lastName Error</div>
+                        <div class="position-absolute error-lastname errors"  style="color:red; font-size: 12px; display: none" >lastName Error</div>
                         <label for="age" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Age</label>
                         <input type="number" class="form-control p-0 user__age" id="age">
-                        <div class="position-absolute error-age" style="color:red; font-size: 12px; display: none" >Age Error</div>
+                        <div class="position-absolute error-age errors" style="color:red; font-size: 12px; display: none" >Age Error</div>
                         <label for="username" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Email</label>
                         <input type="email" class="form-control p-0 user__username" id="username">
-                        <div class="position-absolute error-username" style="color:red; font-size: 12px; display: none" >Username Error</div>
+                        <div class="position-absolute error-username errors" style="color:red; font-size: 12px; display: none" >Username Error</div>
                         <label for="password2" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Password</label>
                         <input type="password" class="form-control p-0 user__password" id="password">
-                        <div class="position-absolute error-password" style="color:red; font-size: 12px;display: none" >Username Error</div>
+                        <div class="position-absolute error-password errors" style="color:red; font-size: 12px;display: none" >Username Error</div>
                         <label for="roles" class="form-label text-center w-100 mb-0 mt-3" style="font-weight: 700;font-size: 16px;">Role</label>
                         <select class="form-control text-center user__roles" id="roles" name="roles" multiple="multiple" value>
                             <option class="user__roles-admin" value="1">Admin</option>
                             <option class="user__roles-user" value="2">User</option>
                         </select>
-                        <div class="position-absolute error-roles" style="color:red; font-size: 12px; display: none" >Roles Error</div>
+                        <div class="position-absolute error-roles errors" style="color:red; font-size: 12px; display: none" >Roles Error</div>
                         <button type="submit" class="btn btn-success m-auto d-block">Add new user</button>
                     </form>
                 </div>

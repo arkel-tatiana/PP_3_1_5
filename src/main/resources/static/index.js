@@ -90,7 +90,6 @@ class Api {
 // обработки данных по юзеру
 class UserTab {
     constructor({data, userSelector, handleDeleteClick, handleEditClick}) {
-        console.log(data)
         this._username = data.username;
         this._id = data.id;
         this._firstName = data.firstName;
@@ -196,7 +195,7 @@ function handlerSubmitFormAdd (evt) {
     let dataValue = getValueField(addForm)
      api.addUser(dataValue)
         .then((value)=>{
-            let errors = value[1];
+            let errors = value.bd;
             errors.forEach((error) => {
                 if (error.field == "firstName") {
                     document.querySelector('.error-firstname').setAttribute("style", "color:red; font-size: 12px; display: block");
@@ -225,7 +224,9 @@ function handlerSubmitFormAdd (evt) {
             });
             if (errors.length === 0) {
                 addForm.reset();
-                tableUsers.addItem(createUser(value[0]))
+                const errorElements = addPanel.querySelectorAll('.errors')
+                errorElements.forEach((errorElement) => errorElement.setAttribute("style", "color:red; font-size: 12px; display: none"));
+                tableUsers.addItem(createUser(value.user));
             }
         })
         .catch((err)=>{
@@ -286,7 +287,6 @@ Promise.all([api.getUserAuth(), api.getAllUsers()])
     })
 
 function getCurrentUser(roleUser) {
-    console.log(roleUser);
     let textRole="";
     if (roleUser.some(role => role.name === "ROLE_ADMIN")) {
         textRole = textRole + "ADMIN "

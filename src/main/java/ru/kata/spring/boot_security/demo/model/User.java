@@ -31,8 +31,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    @NotEmpty(message = "Емаил не должн быть пустым")
-    @Size(min = 2, max = 100, message = "Емаил должн быть от 2 до 100 символов")
+    @NotEmpty(message = "Емаил не должен быть пустым")
+    @Size(min = 2, max = 100, message = "Емаил должен быть от 2 до 100 символов")
     @Email(message = "Введен некорректный адрес электронной почты")
     @Column(name = "userName", unique = true)
     private String userName;
@@ -47,7 +47,8 @@ public class User implements UserDetails {
     @Min(value = 0, message = "Возраст должен быть больше 0")
     @Column(name = "age")
     private int age;
-
+    @NotEmpty(message = "Пароль должен быть введен")
+    @Size(min = 2, max = 100, message = "Пароль должен быть от 6 до 20 символов")
     @Column(name = "password")
     private String password;
 
@@ -55,7 +56,7 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-  //  @NotEmpty(message = "Пользователю не присвоена роль") cascade = CascadeType.PERSIST,
+    @NotEmpty(message = "Пользователю не присвоена роль")
     @Column(name = "role")
     private Set<Role> roles;
 
